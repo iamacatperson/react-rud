@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 
 export default class Users extends Component {
 	constructor(props) {
@@ -27,24 +21,40 @@ export default class Users extends Component {
 
 				<h1>Users List</h1>
 
-				<Table>
-					<TableHead>
-						<TableRow>
-							<TableCell>ID</TableCell>
-							<TableCell>Avatar</TableCell>
-							<TableCell>First Name</TableCell>
-							<TableCell>Last Name</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						<TableRow>
-							<TableCell>1</TableCell>
-							<TableCell>[Placeholder]</TableCell>
-							<TableCell>Ava</TableCell>
-							<TableCell>Guerrero</TableCell>
-						</TableRow>
-					</TableBody>
-				</Table>
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Avatar</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>[Avatar]</td>
+							<td>Ava</td>
+							<td>Guerrero</td>
+							<td>Edit Delete</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>[Avatar]</td>
+							<td>Eugene</td>
+							<td>Guerrero</td>
+							<td>Edit Delete</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>[Avatar]</td>
+							<td>Joseph</td>
+							<td>Guerrero</td>
+							<td>Edit Delete</td>
+						</tr>
+					</tbody>
+				</table>
 
 			</div>
 		);
