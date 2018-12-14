@@ -1,0 +1,24 @@
+.users {
+	h1 {
+		font-family: "Arial";
+	}
+
+	&__table {
+		display: table;
+		width: 100%;
+		background: #eee;
+	}
+
+	/* tr */
+	&__table > * {
+		display: table-row;
+	}
+
+	/* td */
+	&__table > * > * {
+		padding: 10px;
+		display: table-cell;
+		border-bottom: 1px solid #aaa;
+		border-collapse: collapse;
+	}
+}
