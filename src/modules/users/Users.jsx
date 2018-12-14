@@ -18,7 +18,6 @@ export default class Users extends Component {
 		};
 
 		this.deleteUser = this.deleteUser.bind(this);
-		this.editeUser = this.editUser.bind(this);
 		this.editUser = this.editUser.bind(this);
 	}
 
@@ -96,13 +95,74 @@ export default class Users extends Component {
 					{users.map(user => {
 						return (
 							<div key={user.id}>
-								<div>{user.avatar}</div>
-								<div>{user.firstName}</div>
-								<div>{user.lastName}</div>
-								<div>{user.email}</div>
-								<div>{user.phone}</div>
 								<div>
-									Edit |{" "}
+									{user.avatar}
+								</div>
+								<div>
+									{userId !== user.id ? (
+										user.firstName
+									) : (
+										<input
+											name="firstName"
+											placeholder="First Name"
+											type="text"
+											value={firstName}
+											onChange={this.handleInputChange}
+										/>
+									)}
+								</div>
+								<div>
+									{userId !== user.id ? (
+										user.lastName
+									) : (
+										<input
+											name="lastName"
+											placeholder="Last Name"
+											type="text"
+											value={lastName}
+											onChange={this.handleInputChange}
+										/>
+									)}
+								</div>
+								<div>
+									{userId !== user.id ? (
+										user.email
+									) : (
+										<input
+											name="email"
+											placeholder="Email"
+											type="text"
+											value={email}
+											onChange={this.handleInputChange}
+										/>
+									)}
+								</div>
+								<div>
+									{userId !== user.id ? (
+										user.phone
+									) : (
+										<input
+											name="phone"
+											placeholder="Phone No."
+											type="text"
+											value={phone}
+											onChange={this.handleInputChange}
+										/>
+									)}
+								</div>
+								<div>
+									{userId !== user.id ? (
+										<button
+											onClick={e =>
+												this.editUser(e, user)
+											}
+										>
+											Edit
+										</button>
+									) : (
+										<button>Save</button>
+									)}
+									|
 									<button
 										onClick={e =>
 											this.deleteUser(e, user.id)
