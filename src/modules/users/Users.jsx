@@ -8,10 +8,18 @@ export default class Users extends Component {
 		super(props);
 		this.state = {
 			users: [],
-			totalUsers: null
+			totalUsers: null,
+			userId: null,
+
+			firstName: "",
+			lastName: "",
+			email: "",
+			phone: ""
 		};
 
 		this.deleteUser = this.deleteUser.bind(this);
+		this.editeUser = this.editUser.bind(this);
+		this.editUser = this.editUser.bind(this);
 	}
 
 	componentDidMount() {
