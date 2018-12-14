@@ -13,6 +13,8 @@ export default class Users extends Component {
 
 			search: "",
 
+			activePage: 1,
+
 			firstName: "",
 			lastName: "",
 			email: "",
@@ -146,6 +148,15 @@ export default class Users extends Component {
 		});
 	}
 
+	/**
+	 * change current page of data
+	 * @param {number} pageNumber	 page number to show
+	 */
+	changePage(pageNumber) {
+		this.getUsers(this.state.search, pageNumber);
+		this.setState({ activePage: pageNumber });
+	}
+
 	render() {
 		const {
 			users,
@@ -154,7 +165,9 @@ export default class Users extends Component {
 			firstName,
 			lastName,
 			email,
-			phone
+			phone,
+			totalUsers,
+			activePage
 		} = this.state;
 
 		return (
@@ -277,9 +290,21 @@ export default class Users extends Component {
 				</div>
 
 				<ul className="pagination">
-					<li className="pagination__item pagination__item--active">1</li>
-					<li>2</li>
-					<li>3</li>
+					{[...Array(Math.round(totalUsers / 10))].map((_, index) => {
+						return (
+							<li
+								key={index}
+								className={
+									activePage === index + 1
+										? "pagination__item pagination__item--active"
+										: null
+								}
+								onClick={() => this.changePage(index + 1)}
+							>
+								{index + 1}
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 		);
