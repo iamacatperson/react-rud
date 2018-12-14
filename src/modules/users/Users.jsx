@@ -19,6 +19,8 @@ export default class Users extends Component {
 
 		this.deleteUser = this.deleteUser.bind(this);
 		this.editUser = this.editUser.bind(this);
+
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -74,6 +76,20 @@ export default class Users extends Component {
 			email: user.email,
 			phone: user.phone
 		});
+	}
+
+	/**
+	 * handles changing of input fields 
+	 * @param {object} e		event object
+	 */
+	handleInputChange(e) {
+	    const target = e.target;
+	    const value = target.value;
+	    const name = target.name;
+
+	    this.setState({
+	      [name]: value
+	    });
 	}
 
 	render() {
