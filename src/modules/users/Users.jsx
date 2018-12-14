@@ -11,6 +11,8 @@ export default class Users extends Component {
 			totalUsers: null,
 			userId: null,
 
+			search: "",
+
 			firstName: "",
 			lastName: "",
 			email: "",
@@ -118,11 +120,37 @@ export default class Users extends Component {
 	}
 
 	render() {
-		const { users, userId, firstName, lastName, email, phone } = this.state;
+		const {
+			users,
+			userId,
+			search,
+			firstName,
+			lastName,
+			email,
+			phone
+		} = this.state;
 
 		return (
 			<div className="users">
 				<h1>Users List</h1>
+
+				<form onSubmit={this.searchUsers}>
+					<label>
+						Search:
+						<input
+							type="text"
+							name="search"
+							value={search}
+							onChange={this.handleInputChange}
+						/>
+					</label>
+					<input type="submit" value="Submit" />
+					<input
+						type="button"
+						value="Reset"
+						onClick={this.resetSearch}
+					/>
+				</form>
 
 				<div className="users__table">
 					<div>
@@ -199,7 +227,13 @@ export default class Users extends Component {
 											Edit
 										</button>
 									) : (
-										<button onClick={e => this.saveUser(e, user.id)}>Save</button>
+										<button
+											onClick={e =>
+												this.saveUser(e, user.id)
+											}
+										>
+											Save
+										</button>
 									)}
 									|
 									<button
