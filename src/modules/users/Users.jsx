@@ -20,6 +20,7 @@ export default class Users extends Component {
 		};
 
 		this.searchUsers = this.searchUsers.bind(this);
+		this.resetSearch = this.resetSearch.bind(this);
 
 		this.deleteUser = this.deleteUser.bind(this);
 		this.editUser = this.editUser.bind(this);
@@ -61,6 +62,19 @@ export default class Users extends Component {
 		e.preventDefault();
 
 		this.getUsers(search);
+	}
+
+	/**
+	 * resets the search field
+	 * @param  {string} query   query string to be used for searching
+	 */
+	resetSearch(e) {
+		e.preventDefault();
+
+		this.setState({
+			search: ""
+		});
+		this.getUsers();
 	}
 
 	/**
