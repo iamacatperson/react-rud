@@ -79,17 +79,42 @@ export default class Users extends Component {
 	}
 
 	/**
-	 * handles changing of input fields 
+	 * saves changes to the user to server
+	 * @param {object} e		event object
+	 * @param {string} userId 	userId of item to be deleted
+	 */
+	saveUser(e, userId) {
+		e.preventDefault();
+
+		axios
+			.put(`http://localhost:3001/users/${userId}`, {
+				firstName:
+					this.state.firstName.charAt(0).toUpperCase() +
+					this.state.firstName.slice(1),
+				lastName:
+					this.state.lastName.charAt(0).toUpperCase() +
+					this.state.lastName.slice(1),
+				email: this.state.email,
+				phone: this.state.phone
+			})
+			.then(res => {
+				this.getUsers();
+				this.setState({ userId: null });
+			});
+	}
+
+	/**
+	 * handles changing of input fields
 	 * @param {object} e		event object
 	 */
 	handleInputChange(e) {
-	    const target = e.target;
-	    const value = target.value;
-	    const name = target.name;
+		const target = e.target;
+		const value = target.value;
+		const name = target.name;
 
-	    this.setState({
-	      [name]: value
-	    });
+		this.setState({
+			[name]: value
+		});
 	}
 
 	render() {
@@ -174,7 +199,7 @@ export default class Users extends Component {
 											Edit
 										</button>
 									) : (
-										<button>Save</button>
+										<button onClick={e => this.saveUser(e, user.id)}>Save</button>
 									)}
 									|
 									<button
