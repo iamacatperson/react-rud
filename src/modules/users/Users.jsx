@@ -275,6 +275,12 @@ export default class Users extends Component {
 						);
 					})}
 				</div>
+
+				<ul className="pagination">
+					<li className="pagination__item pagination__item--active">1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
 			</div>
 		);
 	}

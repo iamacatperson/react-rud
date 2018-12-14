@@ -22,3 +22,27 @@
 		border-collapse: collapse;
 	}
 }
+
+.pagination {
+
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__item {
+
+    &--active {
+      background: blue;
+      color: #FFF;
+    }
+
+  }
+
+}
