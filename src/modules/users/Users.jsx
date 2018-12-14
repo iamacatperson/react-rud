@@ -60,8 +60,25 @@ export default class Users extends Component {
 		});
 	}
 
+	/**
+	 * edits the user and sends back data to server
+	 * @param {object} e		event object
+	 * @param {string} userId 	userId of item to be deleted
+	 */
+	editUser(e, user) {
+		e.preventDefault();
+
+		this.setState({
+			userId: user.id,
+			firstName: user.firstName,
+			lastName: user.lastName,
+			email: user.email,
+			phone: user.phone
+		});
+	}
+
 	render() {
-		const { users } = this.state;
+		const { users, userId, firstName, lastName, email, phone } = this.state;
 
 		return (
 			<div className="users">
