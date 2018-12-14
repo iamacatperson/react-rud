@@ -1,0 +1,28 @@
+{
+	"users": [
+	    {
+	      "id": 1,	
+	      "avatar": "",	
+	      "firstName": "AvaMarie",
+	      "lastName": "Guerrero",
+	      "email": "ava.square@gmail.com",
+	      "phone": "83182627"
+	    },
+	    {
+	      "id": 2,	
+	      "avatar": "",	
+	      "firstName": "Gino",
+	      "lastName": "Guerrero",
+	      "email": "some@gmail.com",
+	      "phone": "83182627"
+	    },
+	    {
+	      "id": 3,	
+	      "avatar": "",	
+	      "firstName": "Jops",
+	      "lastName": "Guerrero",
+	      "email": "some@gmail.com",
+	      "phone": "83182627"
+	    }
+	]
+}
