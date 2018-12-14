@@ -10,6 +10,8 @@ export default class Users extends Component {
 			users: [],
 			totalUsers: null
 		};
+
+		this.deleteUser = this.deleteUser.bind(this);
 	}
 
 	componentDidMount() {
@@ -37,9 +39,21 @@ export default class Users extends Component {
 			});
 	}
 
+	/**
+	 * gets the user list from the API endpoint
+	 * @param {object} e		event object
+	 * @param {string} userId 	userId of item to be deleted
+	 */
+	deleteUser(e, userId) {
+		e.preventDefault();
+
+		axios.delete(`http://localhost:3001/users/${userId}`).then(res => {
+			this.getUsers();
+		});
+	}
+
 	render() {
 		const { users } = this.state;
-		console.log(this.state.users);
 
 		return (
 			<div className="users">
@@ -62,7 +76,16 @@ export default class Users extends Component {
 								<div>{user.lastName}</div>
 								<div>{user.email}</div>
 								<div>{user.phone}</div>
-								<div>Edit | Delete</div>
+								<div>
+									Edit |{" "}
+									<button
+										onClick={e =>
+											this.deleteUser(e, user.id)
+										}
+									>
+										Delete
+									</button>
+								</div>
 							</div>
 						);
 					})}
