@@ -95,9 +95,7 @@ export default class Users extends Component {
 					{users.map(user => {
 						return (
 							<div key={user.id}>
-								<div>
-									{user.avatar}
-								</div>
+								<div>{user.avatar}</div>
 								<div>
 									{userId !== user.id ? (
 										user.firstName
