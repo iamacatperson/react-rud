@@ -19,6 +19,8 @@ export default class Users extends Component {
 			phone: ""
 		};
 
+		this.searchUsers = this.searchUsers.bind(this);
+
 		this.deleteUser = this.deleteUser.bind(this);
 		this.editUser = this.editUser.bind(this);
 
@@ -48,6 +50,17 @@ export default class Users extends Component {
 					totalUsers: res.headers["x-total-count"]
 				});
 			});
+	}
+
+	/**
+	 * searches the user data using the search query string
+	 * @param  {object} e		event object
+	 */
+	searchUsers(e) {
+		const { search } = this.state;
+		e.preventDefault();
+
+		this.getUsers(search);
 	}
 
 	/**
