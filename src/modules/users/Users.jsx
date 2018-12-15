@@ -320,32 +320,40 @@ class Users extends Component {
 								</div>
 								<div>
 									{userId !== user.id ? (
-										<button
+										<Button
+											variant="contained"
+											className={classes.button}
+											color="primary"
 											onClick={e =>
 												this.editUser(e, user)
 											}
 										>
 											Edit
-										</button>
+										</Button>
 									) : (
-										<button
+										<Button
+											variant="contained"
+											className={classes.button}
+											color="primary"
 											onClick={e =>
 												this.saveUser(e, user.id)
 											}
 										>
 											Save
-										</button>
+										</Button>
 									)}
-									|
-									<button
+
+									<Button
+										className={classes.button}
+										color="secondary"
 										onClick={e =>
 											this.deleteUser(e, user.id)
 										}
 									>
 										Delete
-									</button>
+									</Button>
 								</div>
-							</div>
+							</form>
 						);
 					})}
 				</div>
