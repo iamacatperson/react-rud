@@ -326,7 +326,7 @@ class Users extends Component {
 								</div>
 								<div>
 									{userId !== user.id ? (
-										<p>{user.email}</p>
+										<p><a href={`mailto: ${user.email}`}>{user.email}</a></p>
 									) : (
 										<input
 											name="email"
