@@ -86,10 +86,11 @@ export default class Users extends Component {
 	 * @param {string} userId 	userId of item to be deleted
 	 */
 	deleteUser(e, userId) {
+		const { activePage } = this.state;
 		e.preventDefault();
 
 		axios.delete(`http://localhost:3001/users/${userId}`).then(res => {
-			this.getUsers();
+			this.getUsers(undefined, activePage);
 		});
 	}
 
