@@ -27,6 +27,8 @@ class Users extends Component {
 
 			search: "",
 
+			isLoading: false,
+
 			activePage: 1,
 
 			firstName: "",
@@ -67,6 +69,7 @@ class Users extends Component {
 			})
 			.then(res => {
 				this.setState({
+					isLoading: false,
 					users: res.data,
 					totalUsers: res.headers["x-total-count"]
 				});
@@ -81,6 +84,7 @@ class Users extends Component {
 		const { search } = this.state;
 		e.preventDefault();
 
+		this.setState({ users: [] });
 		this.getUsers(search);
 	}
 
@@ -92,6 +96,7 @@ class Users extends Component {
 		e.preventDefault();
 
 		this.setState({
+			users: [],
 			search: "",
 			activePage: 1
 		});
@@ -140,6 +145,8 @@ class Users extends Component {
 	saveUser(e, userId) {
 		const { activePage, search } = this.state;
 		e.preventDefault();
+
+		this.setState({ isLoading: true });
 
 		axios
 			.put(`http://localhost:3001/users/${userId}`, {
@@ -214,6 +221,7 @@ class Users extends Component {
 		const {
 			currentUser,
 			users,
+			isLoading,
 			userId,
 			search,
 			firstName,
@@ -225,6 +233,8 @@ class Users extends Component {
 		} = this.state;
 
 		const { classes } = this.props;
+
+		console.log(users);
 
 		return (
 			<div className="users">
@@ -248,6 +258,8 @@ class Users extends Component {
 					users!
 				</p>
 
+				<p>Please take note that every request to the server will have a delay of <strong>3 seconds</strong>.</p>
+
 				<form className="search" onSubmit={this.searchUsers}>
 					<div className="search__container">
 						<input
@@ -258,14 +270,22 @@ class Users extends Component {
 							onChange={this.handleInputChange}
 						/>
 
-						<Button variant="contained" type="submit" className={classes.button} color="primary">
+						<Button
+							variant="contained"
+							type="submit"
+							className={classes.button}
+							color="primary"
+						>
 							Submit
 						</Button>
 
-						<Button className={classes.button} onClick={this.resetSearch}>Reset</Button>
+						<Button
+							className={classes.button}
+							onClick={this.resetSearch}
+						>
+							Reset
+						</Button>
 					</div>
-
-
 				</form>
 
 				<div className="users__table">
@@ -287,131 +307,169 @@ class Users extends Component {
 							<p>Actions</p>
 						</div>
 					</div>
-					{users.map(user => {
-						return (
-							<form
-								key={user.id}
-								className={`users__table-row ${
-									userId === user.id
-										? "users__table-row--highlighted"
-										: null
-								}`}
-							>
-								<div>{user.avatar}</div>
-								<div>
-									{userId !== user.id ? (
-										<p>{user.firstName}</p>
-									) : (
-										<input
-											name="firstName"
-											placeholder="First Name"
-											type="text"
-											value={firstName}
-											onChange={this.handleInputChange}
-										/>
-									)}
-								</div>
-								<div>
-									{userId !== user.id ? (
-										<p>{user.lastName}</p>
-									) : (
-										<input
-											name="lastName"
-											placeholder="Last Name"
-											type="text"
-											value={lastName}
-											onChange={this.handleInputChange}
-										/>
-									)}
-								</div>
-								<div>
-									{userId !== user.id ? (
-										<p><a href={`mailto: ${user.email}`}>{user.email}</a></p>
-									) : (
-										<input
-											name="email"
-											placeholder="Email"
-											type="text"
-											value={email}
-											onChange={this.handleInputChange}
-										/>
-									)}
-								</div>
-								<div>
-									{userId !== user.id ? (
-										<p>{user.phone}</p>
-									) : (
-										<input
-											name="phone"
-											placeholder="Phone No."
-											type="text"
-											value={phone}
-											onChange={this.handleInputChange}
-										/>
-									)}
-								</div>
-								<div>
-									{userId !== user.id ? (
-										<Button
-											variant="contained"
-											className={classes.button}
-											color="primary"
-											onClick={e =>
-												this.editUser(e, user)
-											}
-										>
-											Edit
-										</Button>
-									) : (
-										<Button
-											variant="contained"
-											className={classes.button}
-											color="primary"
-											onClick={e =>
-												this.saveUser(e, user.id)
-											}
-										>
-											Save
-										</Button>
-									)}
 
-									<Button
-										className={classes.button}
-										color="secondary"
-										onClick={e =>
-											this.deleteUser(e, user.id)
-										}
-									>
-										Delete
-									</Button>
+					{!users.length &&
+						[...Array(3)].map(row => {
+							return (
+								<div className="users__table-row users__table-row--loading">
+									<div className="users__table-row">
+										
+									</div>
+									{[...Array(5)].map(row => {
+										return (
+											<div className="users__table-row">
+												<p />
+											</div>
+										);
+									})}
 								</div>
-							</form>
-						);
-					})}
+							);
+						})}
+
+					{!!users.length &&
+						users.map(user => {
+							return (
+								<form
+									key={user.id}
+									className={`users__table-row ${
+										userId === user.id
+											? "users__table-row--highlighted"
+											: null
+									}`}
+								>
+									<div>{user.avatar}</div>
+									<div>
+										{userId !== user.id ? (
+											<p>{user.firstName}</p>
+										) : (
+											<input
+												name="firstName"
+												placeholder="First Name"
+												type="text"
+												value={firstName}
+												onChange={
+													this.handleInputChange
+												}
+											/>
+										)}
+									</div>
+									<div>
+										{userId !== user.id ? (
+											<p>{user.lastName}</p>
+										) : (
+											<input
+												name="lastName"
+												placeholder="Last Name"
+												type="text"
+												value={lastName}
+												onChange={
+													this.handleInputChange
+												}
+											/>
+										)}
+									</div>
+									<div>
+										{userId !== user.id ? (
+											<p>
+												<a
+													href={`mailto: ${
+														user.email
+													}`}
+												>
+													{user.email}
+												</a>
+											</p>
+										) : (
+											<input
+												name="email"
+												placeholder="Email"
+												type="text"
+												value={email}
+												onChange={
+													this.handleInputChange
+												}
+											/>
+										)}
+									</div>
+									<div>
+										{userId !== user.id ? (
+											<p>{user.phone}</p>
+										) : (
+											<input
+												name="phone"
+												placeholder="Phone No."
+												type="text"
+												value={phone}
+												onChange={
+													this.handleInputChange
+												}
+											/>
+										)}
+									</div>
+									<div>
+										{userId !== user.id ? (
+											<Button
+												variant="contained"
+												className={classes.button}
+												color="primary"
+												onClick={e =>
+													this.editUser(e, user)
+												}
+											>
+												Edit
+											</Button>
+										) : (
+											<Button
+												variant="contained"
+												className={classes.button}
+												color="primary"
+												onClick={e =>
+													this.saveUser(e, user.id)
+												}
+											>
+												{!isLoading ? "Save" : "Saving..."}
+											</Button>
+										)}
+
+										<Button
+											className={classes.button}
+											color="secondary"
+											onClick={e =>
+												this.deleteUser(e, user.id)
+											}
+										>
+											Delete
+										</Button>
+									</div>
+								</form>
+							);
+						})}
 				</div>
 
-				<ul className="pagination">
-					{[...Array(Math.round(totalUsers / 20))].map((_, index) => {
-						return (
-							<li
-								key={index}
-								className="pagination__item"
-								onClick={() => this.changePage(index + 1)}
-							>
-								<Button
-									variant={
-										activePage !== index + 1
-											? "outlined"
-											: "contained"
-									}
-									color="primary"
+				{!!users.length && 
+					<ul className="pagination">
+						{[...Array(Math.round(totalUsers / 20))].map((_, index) => {
+							return (
+								<li
+									key={index}
+									className="pagination__item"
+									onClick={() => this.changePage(index + 1)}
 								>
-									{index + 1}
-								</Button>
-							</li>
-						);
-					})}
-				</ul>
+									<Button
+										variant={
+											activePage !== index + 1
+												? "outlined"
+												: "contained"
+										}
+										color="primary"
+									>
+										{index + 1}
+									</Button>
+								</li>
+							);
+						})}
+					</ul>
+				}
 			</div>
 		);
 	}
