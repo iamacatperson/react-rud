@@ -11,6 +11,8 @@ export default class Register extends Component {
 
 		this.onSubmit = this.onSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.checkAuthentication();
 	}
 
 	/**
@@ -42,6 +44,17 @@ export default class Register extends Component {
 
 		this.setState({
 			[name]: value
+		});
+	}
+
+	/**
+	 * check whether there's an authenticated user
+	 */
+	checkAuthentication() {
+		app.auth().onAuthStateChanged(user => {
+			if (user) {
+				this.props.history.push("/users");
+			}
 		});
 	}
 

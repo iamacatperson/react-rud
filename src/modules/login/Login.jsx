@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import app from "../../base";
 
-export default class Login extends Component {
+class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -11,6 +12,8 @@ export default class Login extends Component {
 
 		this.onSubmit = this.onSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.checkAuthentication();
 	}
 
 	/**
@@ -22,10 +25,7 @@ export default class Login extends Component {
 		const { email, password } = this.state;
 
 		try {
-			const user = app
-				.auth()
-				.signInWithEmailAndPassword(email, password);
-			this.props.history.push("/users");
+			const user = app.auth().signInWithEmailAndPassword(email, password);
 		} catch (error) {
 			alert(error);
 		}
@@ -42,6 +42,17 @@ export default class Login extends Component {
 
 		this.setState({
 			[name]: value
+		});
+	}
+
+	/**
+	 * check whether there's an authenticated user
+	 */
+	checkAuthentication() {
+		app.auth().onAuthStateChanged(user => {
+			if (user) {
+				this.props.history.push("/users");
+			}
 		});
 	}
 
@@ -81,3 +92,5 @@ export default class Login extends Component {
 		);
 	}
 }
+
+export default withRouter(Login);
