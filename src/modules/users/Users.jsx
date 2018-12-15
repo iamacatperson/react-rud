@@ -370,14 +370,14 @@ class Users extends Component {
 						return (
 							<li
 								key={index}
-								className={
-									activePage === index + 1
-										? "pagination__item pagination__item--active"
-										: null
-								}
+								className="pagination__item"
 								onClick={() => this.changePage(index + 1)}
 							>
-								{index + 1}
+								<Button variant={
+									activePage !== index + 1
+										? "outlined"
+										: "contained"
+								} color="primary">{index + 1}</Button>
 							</li>
 						);
 					})}
