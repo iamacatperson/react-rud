@@ -104,13 +104,13 @@ class Users extends Component {
 	 * @param {string} userId 	userId of item to be deleted
 	 */
 	deleteUser(e, userId) {
-		const { activePage } = this.state;
+		const { activePage, search } = this.state;
 		e.preventDefault();
 
 		const result = window.confirm("Are you sure you want to delete?");
 		if (result) {
 			axios.delete(`http://localhost:3001/users/${userId}`).then(res => {
-				this.getUsers(undefined, activePage);
+				this.getUsers(search, activePage);
 			});
 		}
 	}
