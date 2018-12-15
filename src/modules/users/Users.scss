@@ -1,11 +1,22 @@
 .users {
+	padding: 20px;
+
 	h1 {
 		font-family: "Arial";
 	}
 
 	&__header {
-		padding: 10px;
-		background: #c1ccd3;
+		padding: 10px 20px;
+		background: #363545;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		h1, p {
+			margin: 0;
+			padding: 0;
+			color: #FFF;
+		}
 	}
 
 	&__table {

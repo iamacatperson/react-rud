@@ -20,6 +20,8 @@ class Users extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			currentUser: null,
+
 			users: [],
 			totalUsers: null,
 			userId: null,
@@ -187,6 +189,8 @@ class Users extends Component {
 		app.auth().onAuthStateChanged(user => {
 			if (!user) {
 				this.props.history.push("/login");
+			} else {
+				this.setState({ currentUser: user.email });
 			}
 		});
 	}
@@ -209,6 +213,7 @@ class Users extends Component {
 
 	render() {
 		const {
+			currentUser,
 			users,
 			userId,
 			search,
@@ -222,18 +227,12 @@ class Users extends Component {
 
 		const { classes } = this.props;
 
-		console.log(this.props);
-
-		const currentUser = app.auth().currentUser;
-
 		return (
 			<div className="users">
 				<div className="users__header">
 					<h1>React CRUD</h1>
 
-					<p>{currentUser && `Hi, ${currentUser.email}!`}</p>
-
-					<p onClick={this.logOut}>Logout</p>
+					<p>{currentUser && `Logged in with ${<strong>currentUser</strong>}!`} (<Button onClick={this.logOut}>Logout</Button>)</p>
 				</div>
 
 				<h2>Users</h2>
