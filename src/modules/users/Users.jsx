@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import axios from "axios";
 import app from "../../base";
 
 import "./Users.scss";
 
-export default class Users extends Component {
+class Users extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -29,6 +30,8 @@ export default class Users extends Component {
 		this.editUser = this.editUser.bind(this);
 
 		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.logOut = this.logOut.bind(this);
 
 		this.checkAuthentication();
 	}
@@ -167,11 +170,27 @@ export default class Users extends Component {
 	 * check whether there's an authenticated user
 	 */
 	checkAuthentication() {
-		app.auth().onAuthStateChanged(function(user) {
+		app.auth().onAuthStateChanged(user => {
 			if (!user) {
 				this.props.history.push("/login");
 			}
 		});
+	}
+
+	/**
+	 * logs out the current authenticated user
+	 */
+	logOut() {
+		app.auth()
+			.signOut()
+			.then(
+				() => {
+					this.props.history.push("/login");
+				},
+				error => {
+					console.error("Sign Out Error", error);
+				}
+			);
 	}
 
 	render() {
@@ -196,7 +215,7 @@ export default class Users extends Component {
 
 					<p>{currentUser && `Hi, ${currentUser.email}!`}</p>
 
-					<p>Logout</p>
+					<p onClick={this.logOut}>Logout</p>
 				</div>
 
 				<h2>Users List</h2>
@@ -337,3 +356,5 @@ export default class Users extends Component {
 		);
 	}
 }
+
+export default withRouter(Users);
