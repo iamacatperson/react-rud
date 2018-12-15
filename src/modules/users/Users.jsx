@@ -3,7 +3,18 @@ import { withRouter } from "react-router";
 import axios from "axios";
 import app from "../../base";
 
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import TextField from '@material-ui/core/TextField';
+
+import "../../styles.scss";
 import "./Users.scss";
+
+const styles = theme => ({
+	button: {
+		margin: theme.spacing.unit
+	}
+});
 
 class Users extends Component {
 	constructor(props) {
@@ -206,6 +217,10 @@ class Users extends Component {
 			activePage
 		} = this.state;
 
+		const { classes } = this.props;
+
+		console.log(this.props);
+
 		const currentUser = app.auth().currentUser;
 
 		return (
@@ -357,4 +372,4 @@ class Users extends Component {
 	}
 }
 
-export default withRouter(Users);
+export default withRouter(withStyles(styles)(Users));
