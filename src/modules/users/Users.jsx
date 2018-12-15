@@ -62,7 +62,7 @@ class Users extends Component {
 			.get(`http://localhost:3001/users?q=${query}`, {
 				params: {
 					_page: currentPage,
-					_limit: 10
+					_limit: 20
 				}
 			})
 			.then(res => {
@@ -391,7 +391,7 @@ class Users extends Component {
 				</div>
 
 				<ul className="pagination">
-					{[...Array(Math.round(totalUsers / 10))].map((_, index) => {
+					{[...Array(Math.round(totalUsers / 20))].map((_, index) => {
 						return (
 							<li
 								key={index}
