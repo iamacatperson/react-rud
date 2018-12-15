@@ -106,9 +106,12 @@ class Users extends Component {
 		const { activePage } = this.state;
 		e.preventDefault();
 
-		axios.delete(`http://localhost:3001/users/${userId}`).then(res => {
-			this.getUsers(undefined, activePage);
-		});
+		const result = window.confirm("Are you sure you want to delete?");
+		if (result) {
+			axios.delete(`http://localhost:3001/users/${userId}`).then(res => {
+				this.getUsers(undefined, activePage);
+			});
+		}
 	}
 
 	/**
