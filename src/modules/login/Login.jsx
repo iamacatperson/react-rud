@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import app from "../../base";
 
 export default class Login extends Component {
 	constructor(props) {
@@ -7,6 +8,41 @@ export default class Login extends Component {
 			email: "",
 			password: ""
 		};
+
+		this.onSubmit = this.onSubmit.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+	}
+
+	/**
+	 * handles submission of login credentials to firebase
+	 * @param {object} e		event object
+	 */
+	onSubmit(e) {
+		e.preventDefault();
+		const { email, password } = this.state;
+
+		try {
+			const user = app
+				.auth()
+				.signInWithEmailAndPassword(email, password);
+			this.props.history.push("/users");
+		} catch (error) {
+			alert(error);
+		}
+	}
+
+	/**
+	 * handles changing of input fields
+	 * @param {object} e		event object
+	 */
+	handleInputChange(e) {
+		const target = e.target;
+		const value = target.value;
+		const name = target.name;
+
+		this.setState({
+			[name]: value
+		});
 	}
 
 	render() {
