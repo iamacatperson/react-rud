@@ -1,16 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Login extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: "",
+			password: ""
+		};
+	}
 
-  render() {
-    return (
-      <div className="users">
+	render() {
+		const { email, password } = this.state;
 
-	      <h1>Login</h1>
+		return (
+			<div className="users">
+				<h1>Login</h1>
 
-	      <p>This is the login page.</p>
+				<p>Please enter your email and password to login.</p>
 
-      </div>
-    );
-  }
+				<form onSubmit={this.onSubmit}>
+					<label>
+						Email
+						<input
+							name="email"
+							type="email"
+							onChange={this.handleInputChange}
+							value={email}
+							placeholder="Email"
+						/>
+					</label>
+					<label>
+						Password
+						<input
+							name="password"
+							type="password"
+							onChange={this.handleInputChange}
+							value={password}
+							placeholder="Password"
+						/>
+					</label>
+					<button type="submit">Log In</button>
+				</form>
+			</div>
+		);
+	}
 }
