@@ -74,7 +74,8 @@ export default class Users extends Component {
 		e.preventDefault();
 
 		this.setState({
-			search: ""
+			search: "",
+			activePage: 1
 		});
 		this.getUsers();
 	}
