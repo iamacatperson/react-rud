@@ -233,7 +233,13 @@ class Users extends Component {
 					<p onClick={this.logOut}>Logout</p>
 				</div>
 
-				<h2>Users List</h2>
+				<h2>Users</h2>
+
+				<p>
+					This is a list of fake users served by json-server. Try to{" "}
+					<strong>Edit</strong> and <strong>Delete</strong> some
+					users!
+				</p>
 
 				<form onSubmit={this.searchUsers}>
 					<label>
@@ -255,12 +261,22 @@ class Users extends Component {
 
 				<div className="users__table">
 					<div className="users__table-row users__table-row users__table-row--header">
-						<div></div>
-						<div><p>First Name</p></div>
-						<div><p>Last Name</p></div>
-						<div><p>Email</p></div>
-						<div><p>Phone</p></div>
-						<div><p>Actions</p></div>
+						<div />
+						<div>
+							<p>First Name</p>
+						</div>
+						<div>
+							<p>Last Name</p>
+						</div>
+						<div>
+							<p>Email</p>
+						</div>
+						<div>
+							<p>Phone</p>
+						</div>
+						<div>
+							<p>Actions</p>
+						</div>
 					</div>
 					{users.map(user => {
 						return (
@@ -373,11 +389,16 @@ class Users extends Component {
 								className="pagination__item"
 								onClick={() => this.changePage(index + 1)}
 							>
-								<Button variant={
-									activePage !== index + 1
-										? "outlined"
-										: "contained"
-								} color="primary">{index + 1}</Button>
+								<Button
+									variant={
+										activePage !== index + 1
+											? "outlined"
+											: "contained"
+									}
+									color="primary"
+								>
+									{index + 1}
+								</Button>
 							</li>
 						);
 					})}
