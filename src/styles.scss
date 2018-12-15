@@ -1,3 +1,17 @@
+body {
+	overflow-y: scroll;
+}
+
 h1, h2, h3, p {
 	font-family: "Arial", sans-serif;
+}
+
+input {
+	outline: none;
+	border: 1px solid #ccc;
+
+	&:focus {
+		background: #ffffe0;
+		border: 1px solid #333;
+	}
 }
