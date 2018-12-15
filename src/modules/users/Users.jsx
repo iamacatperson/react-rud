@@ -164,8 +164,7 @@ export default class Users extends Component {
 	}
 
 	/**
-	 *
-	 * @param
+	 * check whether there's an authenticated user
 	 */
 	checkAuthentication() {
 		app.auth().onAuthStateChanged(function(user) {
