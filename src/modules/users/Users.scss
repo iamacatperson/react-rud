@@ -5,27 +5,64 @@
 
 	&__header {
 		padding: 10px;
-		background: #CCC;
+		background: #c1ccd3;
 	}
 
 	&__table {
 		display: table;
+		word-break: break-all;
 		width: 100%;
-		background: #eee;
-	}
+		background: #d0d6d3;
 
-	/* tr */
-	&__table > * {
-		display: table-row;
+		input {
+			padding: 10px;
+			font-size: 1em;
+		}
+
+		/* tr */
+		&-row {
+			display: table-row;
+
+			&:hover {
+				background: #ffffe0;
+			}
+
+			&--header {
+				font-weight: bold;
+				background: #6c8494;
+				font-size: 0.8em;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				color: #fff;
+
+				&:hover {
+					background: #6c8494;
+				}
+			}
+
+			&--highlighted {
+				background: #d5cac9;
+
+				&:hover {
+					background: #d0d6d3;
+				}
+			}
+		}
 	}
 
 	/* td */
 	&__table > * > * {
+		min-width: 70px;
 		padding: 10px;
 		display: table-cell;
-		border-bottom: 1px solid #aaa;
+		border-bottom: 1px solid #f1f0ee;
 		border-collapse: collapse;
+
+		&:first-child {
+			min-width: 50px;
+		}
 	}
+
 }
 
 .pagination {

@@ -5,7 +5,7 @@ import app from "../../base";
 
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 
 import "../../styles.scss";
 import "./Users.scss";
@@ -254,17 +254,24 @@ class Users extends Component {
 				</form>
 
 				<div className="users__table">
-					<div>
-						<div>[Photo]</div>
-						<div>First Name</div>
-						<div>Last Name</div>
-						<div>Email</div>
-						<div>Phone</div>
-						<div>Actions</div>
+					<div className="users__table-row users__table-row users__table-row--header">
+						<div></div>
+						<div><p>First Name</p></div>
+						<div><p>Last Name</p></div>
+						<div><p>Email</p></div>
+						<div><p>Phone</p></div>
+						<div><p>Actions</p></div>
 					</div>
 					{users.map(user => {
 						return (
-							<form key={user.id}>
+							<form
+								key={user.id}
+								className={`users__table-row ${
+									userId === user.id
+										? "users__table-row--highlighted"
+										: null
+								}`}
+							>
 								<div>{user.avatar}</div>
 								<div>
 									{userId !== user.id ? (
