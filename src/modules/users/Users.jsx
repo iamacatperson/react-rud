@@ -249,11 +249,11 @@ class Users extends Component {
 					</div>
 					{users.map(user => {
 						return (
-							<div key={user.id}>
+							<form key={user.id}>
 								<div>{user.avatar}</div>
 								<div>
 									{userId !== user.id ? (
-										user.firstName
+										<p>{user.firstName}</p>
 									) : (
 										<input
 											name="firstName"
@@ -266,7 +266,7 @@ class Users extends Component {
 								</div>
 								<div>
 									{userId !== user.id ? (
-										user.lastName
+										<p>{user.lastName}</p>
 									) : (
 										<input
 											name="lastName"
@@ -279,7 +279,7 @@ class Users extends Component {
 								</div>
 								<div>
 									{userId !== user.id ? (
-										user.email
+										<p>{user.email}</p>
 									) : (
 										<input
 											name="email"
@@ -292,7 +292,7 @@ class Users extends Component {
 								</div>
 								<div>
 									{userId !== user.id ? (
-										user.phone
+										<p>{user.phone}</p>
 									) : (
 										<input
 											name="phone"
