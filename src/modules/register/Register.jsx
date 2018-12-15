@@ -27,7 +27,6 @@ export default class Register extends Component {
 			const user = app
 				.auth()
 				.createUserWithEmailAndPassword(email, password);
-			this.props.history.push("/login");
 		} catch (error) {
 			alert(error);
 		}
