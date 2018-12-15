@@ -13,6 +13,10 @@ export default class Register extends Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
+	/**
+	 * handles submission of registration credentials to firebase
+	 * @param {object} e		event object
+	 */
 	onSubmit(e) {
 		e.preventDefault();
 		const { email, password } = this.state;
