@@ -175,7 +175,11 @@ export default class Users extends Component {
 
 		return (
 			<div className="users">
-				<h1>Users List</h1>
+				<div className="users__header">
+					<h1>React CRUD</h1>
+				</div>
+
+				<h2>Users List</h2>
 
 				<form onSubmit={this.searchUsers}>
 					<label>
