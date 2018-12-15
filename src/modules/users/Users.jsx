@@ -231,33 +231,41 @@ class Users extends Component {
 				<div className="users__header">
 					<h1>React CRUD</h1>
 
-					<p>{currentUser && `Logged in with ${<strong>currentUser</strong>}!`} (<Button onClick={this.logOut}>Logout</Button>)</p>
+					<p>
+						{currentUser &&
+							`Logged in with ${(
+								<strong>currentUser</strong>
+							)}!`}{" "}
+						(<Button onClick={this.logOut}>Logout</Button>)
+					</p>
 				</div>
 
 				<h2>Users</h2>
 
 				<p>
-					This is a list of fake users served by json-server. Try to{" "}
+					This is a list of dummy users served by json-server. Try to{" "}
 					<strong>Edit</strong> and <strong>Delete</strong> some
 					users!
 				</p>
 
-				<form onSubmit={this.searchUsers}>
-					<label>
-						Search:
+				<form className="search" onSubmit={this.searchUsers}>
+					<div className="search__container">
 						<input
 							type="text"
+							placeholder="Search anything!"
 							name="search"
 							value={search}
 							onChange={this.handleInputChange}
 						/>
-					</label>
-					<input type="submit" value="Submit" />
-					<input
-						type="button"
-						value="Reset"
-						onClick={this.resetSearch}
-					/>
+
+						<Button variant="contained" type="submit" className={classes.button} color="primary">
+							Submit
+						</Button>
+
+						<Button className={classes.button} onClick={this.resetSearch}>Reset</Button>
+					</div>
+
+
 				</form>
 
 				<div className="users__table">
