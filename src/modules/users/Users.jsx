@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import app from "../../base";
 
 import "./Users.scss";
 
@@ -28,6 +29,8 @@ export default class Users extends Component {
 		this.editUser = this.editUser.bind(this);
 
 		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.checkAuthentication();
 	}
 
 	componentDidMount() {
@@ -160,6 +163,18 @@ export default class Users extends Component {
 		this.setState({ activePage: pageNumber });
 	}
 
+	/**
+	 *
+	 * @param
+	 */
+	checkAuthentication() {
+		app.auth().onAuthStateChanged(function(user) {
+			if (!user) {
+				this.props.history.push("/login");
+			}
+		});
+	}
+
 	render() {
 		const {
 			users,
@@ -173,10 +188,16 @@ export default class Users extends Component {
 			activePage
 		} = this.state;
 
+		const currentUser = app.auth().currentUser;
+
 		return (
 			<div className="users">
 				<div className="users__header">
 					<h1>React CRUD</h1>
+
+					<p>{currentUser && `Hi, ${currentUser.email}!`}</p>
+
+					<p>Logout</p>
 				</div>
 
 				<h2>Users List</h2>
