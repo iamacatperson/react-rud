@@ -115,6 +115,7 @@ export default class Users extends Component {
 	 * @param {string} userId 	userId of item to be deleted
 	 */
 	saveUser(e, userId) {
+		const { activePage, search } = this.state;
 		e.preventDefault();
 
 		axios
@@ -129,7 +130,7 @@ export default class Users extends Component {
 				phone: this.state.phone
 			})
 			.then(res => {
-				this.getUsers();
+				this.getUsers(search, activePage);
 				this.setState({ userId: null });
 			});
 	}
