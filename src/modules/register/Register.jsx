@@ -16,7 +16,9 @@ export default class Register extends Component {
 		super(props);
 		this.state = {
 			email: "",
-			password: ""
+			password: "",
+
+			error: ""
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
@@ -34,11 +36,14 @@ export default class Register extends Component {
 		const { email, password } = this.state;
 
 		try {
-			const user = app
-				.auth()
-				.createUserWithEmailAndPassword(email, password);
-		} catch (error) {
-			alert(error);
+			app.auth()
+				.createUserWithEmailAndPassword(email, password)
+				.then(() => this.props.history.push("/users"))
+				.catch(error => {
+					this.setState({ error: error.message });
+				});
+		} catch (err) {
+			alert("Error : ", err);
 		}
 	}
 
@@ -68,7 +73,7 @@ export default class Register extends Component {
 	}
 
 	render() {
-		const { email, password } = this.state;
+		const { email, password, error } = this.state;
 
 		return (
 			<div className="register">
@@ -78,6 +83,13 @@ export default class Register extends Component {
 					<h3 className="text-center">Register an account</h3>
 
 					<div className="panel">
+
+						{error && (
+							<p className="message-panel message-panel--error text-center">
+								{error}
+							</p>
+						)}
+
 						<form onSubmit={this.onSubmit}>
 							<label>
 								<FontAwesomeIcon icon={faEnvelope} /> Email
