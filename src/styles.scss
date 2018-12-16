@@ -1,14 +1,39 @@
 body {
 	overflow-y: scroll;
+	background: #eaeeef;
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3 {
+	padding: 0;
+	margin: 0 0 30px 0;
+}
+
+p {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+h1,
+h2,
+h3,
+label,
+p {
 	font-family: "Arial", sans-serif;
+}
+
+label {
+	font-size: 14px;
+	font-weight: bold;
+	color: #435562;
 }
 
 input {
 	outline: none;
 	border: 1px solid #ccc;
+	padding: 10px;
+	font-size: 1em;
 
 	&:focus {
 		background: #ffffe0;
@@ -19,4 +44,18 @@ input {
 a {
 	color: #3f51b5;
 	text-decoration: none;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.panel {
+	min-width: 300px;
+	width: 300px;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 2px #ccc;
+	margin-bottom: 20px;
 }
