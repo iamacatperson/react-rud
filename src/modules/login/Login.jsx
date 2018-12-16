@@ -16,7 +16,9 @@ class Login extends Component {
 		super(props);
 		this.state = {
 			email: "",
-			password: ""
+			password: "",
+
+			error: ""
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
@@ -34,9 +36,14 @@ class Login extends Component {
 		const { email, password } = this.state;
 
 		try {
-			const user = app.auth().signInWithEmailAndPassword(email, password);
-		} catch (error) {
-			alert(error);
+			app.auth()
+				.signInWithEmailAndPassword(email, password)
+				.then(() => this.props.history.push("/users"))
+				.catch(error => {
+					this.setState({ error: error.message });
+				});
+		} catch (err) {
+			alert("Error : ", err);
 		}
 	}
 
