@@ -56,16 +56,23 @@ class Users extends Component {
 	}
 
 	componentDidMount() {
-		this.getUsers();
+		this.getUsers(undefined, undefined, true);
 	}
 
 	/**
 	 * gets the user list from the API endpoint
-	 * @param {string} query	search query string
-	 * @param {number} page 	current page
+	 * @param {string} query		search query string
+	 * @param {number} page 		current page
+	 * @param {boolean} initLoad 	whether the users are fetched upon mounting of component
 	 */
-	getUsers(query = "", currentPage = 1) {
-		this.setState({ isLoading: true }, () =>
+	getUsers(query = "", currentPage = 1, initLoad) {
+		let delay = null;
+
+		this.setState({ isLoading: true });
+
+		initLoad ? (delay = 5000) : (delay = 0);
+
+		setTimeout(() => {
 			axios
 				.get(`http://localhost:3001/users?q=${query}`, {
 					params: {
@@ -79,8 +86,8 @@ class Users extends Component {
 						users: res.data,
 						totalUsers: res.headers["x-total-count"]
 					});
-				})
-		);
+				});
+		}, delay);
 	}
 
 	/**
