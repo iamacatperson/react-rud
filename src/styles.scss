@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
 body {
 	overflow-y: scroll;
 	background: #eaeeef;
@@ -20,8 +22,10 @@ h1,
 h2,
 h3,
 label,
-p {
-	font-family: "Arial", sans-serif;
+p,
+input,
+button {
+	font-family: "Open Sans", sans-serif;
 }
 
 label {
