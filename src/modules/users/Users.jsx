@@ -424,6 +424,7 @@ class Users extends Component {
 											<input
 												name="firstName"
 												placeholder="First Name"
+												className="input-name"
 												type="text"
 												value={firstName}
 												pattern="[A-Za-z]{2,50}"
@@ -442,6 +443,7 @@ class Users extends Component {
 											<input
 												name="lastName"
 												placeholder="Last Name"
+												className="input-name"
 												type="text"
 												value={lastName}
 												pattern="[A-Za-z]{2,50}"
