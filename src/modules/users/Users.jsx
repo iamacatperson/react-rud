@@ -31,6 +31,7 @@ class Users extends Component {
 
 			activePage: 1,
 
+			avatar: "",
 			firstName: "",
 			lastName: "",
 			email: "",
@@ -143,6 +144,7 @@ class Users extends Component {
 	 * @param {string} userId 	userId of item to be deleted
 	 */
 	saveUser(e, userId) {
+	saveUser(e, userId, userAvatar) {
 		const { activePage, search } = this.state;
 		e.preventDefault();
 
@@ -150,6 +152,7 @@ class Users extends Component {
 
 		axios
 			.put(`http://localhost:3001/users/${userId}`, {
+				avatar: userAvatar,
 				firstName:
 					this.state.firstName.charAt(0).toUpperCase() +
 					this.state.firstName.slice(1),
@@ -224,6 +227,7 @@ class Users extends Component {
 			isLoading,
 			userId,
 			search,
+			avatar,
 			firstName,
 			lastName,
 			email,
@@ -337,7 +341,11 @@ class Users extends Component {
 											: null
 									}`}
 								>
-									<div>{user.avatar}</div>
+									<div>
+										<p>
+											<img src={user.avatar} />
+										</p>
+									</div>
 									<div>
 										{userId !== user.id ? (
 											<p>{user.firstName}</p>
