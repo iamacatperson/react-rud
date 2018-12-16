@@ -1,5 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import app from "../../base";
+
+import Button from "@material-ui/core/Button";
+
+import "../../styles.scss";
+import "./Register.scss";
 
 export default class Register extends Component {
 	constructor(props) {
@@ -61,32 +67,39 @@ export default class Register extends Component {
 		const { email, password } = this.state;
 
 		return (
-			<div className="users">
-				<h1>Register</h1>
+			<div className="register">
+				<div>
+					<h1 className="text-center">Register</h1>
 
-				<form onSubmit={this.onSubmit}>
-					<label>
-						Email
-						<input
-							name="email"
-							type="email"
-							onChange={this.handleInputChange}
-							value={email}
-							placeholder="Email"
-						/>
-					</label>
-					<label>
-						Password
-						<input
-							name="password"
-							type="password"
-							onChange={this.handleInputChange}
-							value={password}
-							placeholder="Password"
-						/>
-					</label>
-					<button type="submit">Sign Up</button>
-				</form>
+					<div className="panel">
+						<form onSubmit={this.onSubmit}>
+							<label>
+								Email
+								<input
+									name="email"
+									type="email"
+									onChange={this.handleInputChange}
+									value={email}
+									placeholder="e.g. john@domain.com"
+									required
+								/>
+							</label>
+							<label>
+								Password
+								<input
+									name="password"
+									type="password"
+									onChange={this.handleInputChange}
+									value={password}
+									required
+								/>
+							</label>
+							<Button variant="contained" color="primary" type="submit">Sign me up</Button>
+						</form>
+					</div>
+
+					<p className="text-center">Already have an account? <Link to="/login">Log in</Link>.</p>
+				</div>
 			</div>
 		);
 	}
