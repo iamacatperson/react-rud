@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import app from "./base";
 
 import Users from "./modules/users/Users";
 import Login from "./modules/login/Login";
