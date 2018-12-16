@@ -6,6 +6,10 @@ import app from "../../base";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSadCry } from "@fortawesome/free-solid-svg-icons";
+import { faReact } from "@fortawesome/free-brands-svg-icons";
+
 import "../../styles.scss";
 import "./Users.scss";
 
@@ -238,7 +242,9 @@ class Users extends Component {
 		return (
 			<div className="users">
 				<div className="users__header">
-					<h1>React CRUD</h1>
+					<h1>
+						<FontAwesomeIcon icon={faReact} /> React RUD
+					</h1>
 
 					<p>
 						{currentUser &&
