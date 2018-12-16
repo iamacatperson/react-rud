@@ -61,20 +61,22 @@ class Users extends Component {
 	 * @param {number} page 	current page
 	 */
 	getUsers(query = "", currentPage = 1) {
-		axios
-			.get(`http://localhost:3001/users?q=${query}`, {
-				params: {
-					_page: currentPage,
-					_limit: 20
-				}
-			})
-			.then(res => {
-				this.setState({
-					isLoading: false,
-					users: res.data,
-					totalUsers: res.headers["x-total-count"]
-				});
-			});
+		this.setState({ isLoading: true }, () =>
+			axios
+				.get(`http://localhost:3001/users?q=${query}`, {
+					params: {
+						_page: currentPage,
+						_limit: 20
+					}
+				})
+				.then(res => {
+					this.setState({
+						isLoading: false,
+						users: res.data,
+						totalUsers: res.headers["x-total-count"]
+					});
+				})
+		);
 	}
 
 	/**
@@ -145,8 +147,6 @@ class Users extends Component {
 	saveUser(e, userId, userAvatar) {
 		const { activePage, search } = this.state;
 		e.preventDefault();
-
-		this.setState({ isLoading: true });
 
 		axios
 			.put(`http://localhost:3001/users/${userId}`, {
@@ -308,14 +308,14 @@ class Users extends Component {
 						</div>
 					</div>
 
-					{!users.length &&
-						[...Array(3)].map(row => {
+					{isLoading && !users.length &&
+						[...Array(3)].map((row, index) => {
 							return (
-								<div className="users__table-row users__table-row--loading">
+								<div className="users__table-row users__table-row--loading" key={index}>
 									<div className="users__table-row" />
-									{[...Array(5)].map(row => {
+									{[...Array(5)].map((row, index) => {
 										return (
-											<div className="users__table-row">
+											<div key={index} className="users__table-row">
 												<p />
 											</div>
 										);
@@ -323,6 +323,10 @@ class Users extends Component {
 								</div>
 							);
 						})}
+
+					{!isLoading && !users.length && 
+						<p className="users__table-cell--empty">{`Sorry, there are no results for "${search}". :( Try another search!`}</p>
+					}	
 
 					{!!users.length &&
 						users.map(user => {
