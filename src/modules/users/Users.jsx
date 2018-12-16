@@ -339,9 +339,12 @@ class Users extends Component {
 							);
 						})}
 
-					{!isLoading && !users.length && 
-						<p className="users__table-cell--empty">{`Sorry, there are no results for "${search}". :( Try another search!`}</p>
-					}	
+					{!isLoading && !users.length && (
+						<p className="users__table-cell--empty">
+							<FontAwesomeIcon icon={faSadCry} />{" "}
+							{`Sorry, there are no results for "${search}". :( Try another search!`}
+						</p>
+					)}
 
 					{!!users.length &&
 						users.map(user => {
