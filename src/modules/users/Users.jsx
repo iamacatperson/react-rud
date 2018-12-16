@@ -85,7 +85,6 @@ class Users extends Component {
 		const { search } = this.state;
 		e.preventDefault();
 
-		this.setState({ users: [] });
 		this.getUsers(search);
 	}
 
@@ -315,9 +314,7 @@ class Users extends Component {
 						[...Array(3)].map(row => {
 							return (
 								<div className="users__table-row users__table-row--loading">
-									<div className="users__table-row">
-										
-									</div>
+									<div className="users__table-row" />
 									{[...Array(5)].map(row => {
 										return (
 											<div className="users__table-row">
