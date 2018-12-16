@@ -428,10 +428,16 @@ class Users extends Component {
 												className={classes.button}
 												color="primary"
 												onClick={e =>
-													this.saveUser(e, user.id)
+													this.saveUser(
+														e,
+														user.id,
+														user.avatar
+													)
 												}
 											>
-												{!isLoading ? "Save" : "Saving..."}
+												{!isLoading
+													? "Save"
+													: "Saving..."}
 											</Button>
 										)}
 
