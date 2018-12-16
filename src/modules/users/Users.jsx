@@ -19,11 +19,13 @@ const styles = theme => ({
 	}
 });
 
+const pageLimit = 4;
+
 class Users extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentUser: null,
+			currentUser: "",
 
 			users: [],
 			totalUsers: null,
@@ -77,7 +79,9 @@ class Users extends Component {
 				.get(`http://localhost:3001/users?q=${query}`, {
 					params: {
 						_page: currentPage,
-						_limit: 4
+						_limit: pageLimit,
+						_sort: column,
+						_order: sortOrder
 					}
 				})
 				.then(res => {
@@ -318,7 +322,7 @@ class Users extends Component {
 
 					{isLoading &&
 						!users.length &&
-						[...Array(4)].map((row, index) => {
+						[...Array(pageLimit)].map((row, index) => {
 							return (
 								<div
 									className="users__table-row users__table-row--loading"
@@ -482,34 +486,36 @@ class Users extends Component {
 						})}
 				</div>
 
-				{!!users.length && (
-					<ul className="pagination">
-						{[...Array(Math.round(totalUsers / 4))].map(
-							(_, index) => {
-								return (
-									<li
-										key={index}
-										className="pagination__item"
-										onClick={() =>
-											this.changePage(index + 1)
-										}
-									>
-										<Button
-											variant={
-												activePage !== index + 1
-													? "outlined"
-													: "contained"
+				<div className="container--full-width">
+					{!!users.length && (
+						<ul className="pagination">
+							{[...Array(Math.round(totalUsers / pageLimit))].map(
+								(_, index) => {
+									return (
+										<li
+											key={index}
+											className="pagination__item"
+											onClick={() =>
+												this.changePage(index + 1)
 											}
-											color="primary"
 										>
-											{index + 1}
-										</Button>
-									</li>
-								);
-							}
-						)}
-					</ul>
-				)}
+											<Button
+												variant={
+													activePage !== index + 1
+														? "outlined"
+														: "contained"
+												}
+												color="primary"
+											>
+												{index + 1}
+											</Button>
+										</li>
+									);
+								}
+							)}
+						</ul>
+					)}
+				</div>
 			</div>
 		);
 	}
