@@ -336,7 +336,7 @@ class Users extends Component {
 								>
 									<div>
 										<p>
-											<img src={user.avatar} />
+											<img src={user.avatar} alt={user.firstName} />
 										</p>
 									</div>
 									<div>
