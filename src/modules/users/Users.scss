@@ -1,9 +1,5 @@
 .users {
 
-	h1 {
-		font-family: "Arial";
-	}
-
 	&__header {
 		padding: 10px 20px;
 		margin-bottom: 30px;
@@ -13,6 +9,7 @@
 		align-items: center;
 
 		h1, p {
+			font-weight: normal;
 			margin: 0;
 			padding: 0;
 			color: #FFF;
@@ -56,6 +53,7 @@
 			&--loading {
 
 				& > * {
+
 					p {
 						width: 60%;
 						height: 15px;
@@ -67,6 +65,7 @@
 					    background-image: linear-gradient(to right, #bbb 10%, #ccc 18%, #bbb 33%);
 					    background-repeat: no-repeat;
 					    position: relative;
+					    margin: 10px 0 10px 0;
 					}
 				}
 
