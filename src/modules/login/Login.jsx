@@ -94,30 +94,39 @@ class Login extends Component {
 						)}
 
 						<form onSubmit={this.onSubmit}>
-				
-							<label for="email">Email</label>
+							<label for="email"><FontAwesomeIcon icon={faEnvelope} /> Email</label>
 							<input
 								name="email"
 								type="email"
 								onChange={this.handleInputChange}
 								value={email}
 								placeholder="e.g. john@domain.com"
+								required
 							/>
 
-							<label for="password">Password</label>
+							<label for="password"><FontAwesomeIcon icon={faUnlock} /> Password</label>
 							<input
 								name="password"
 								type="password"
 								onChange={this.handleInputChange}
 								value={password}
+								required
 							/>
-							<Button variant="contained" color="primary" type="submit">Log In</Button>
+							<Button
+								variant="contained"
+								color="primary"
+								type="submit"
+							>
+								Log In
+							</Button>
 						</form>
 					</div>
 
-					<p className="text-center">Don't have an account? <Link to="/register">Register</Link>.</p>
+					<p className="text-center">
+						Don't have an account?{" "}
+						<Link to="/register">Register</Link>.
+					</p>
 				</div>
-
 			</div>
 		);
 	}
