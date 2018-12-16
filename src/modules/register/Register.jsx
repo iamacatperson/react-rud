@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import app from "../../base";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faReact } from '@fortawesome/free-brands-svg-icons';
+
 import Button from "@material-ui/core/Button";
 
 import "../../styles.scss";
@@ -69,7 +72,9 @@ export default class Register extends Component {
 		return (
 			<div className="register">
 				<div>
-					<h1 className="text-center">Register</h1>
+					
+					<h1 className="text-center"><FontAwesomeIcon icon={faReact} /><br />React RUD</h1>
+					<h3 className="text-center">Register an account</h3>
 
 					<div className="panel">
 						<form onSubmit={this.onSubmit}>

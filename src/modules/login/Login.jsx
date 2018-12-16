@@ -3,6 +3,9 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import app from "../../base";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faReact } from '@fortawesome/free-brands-svg-icons';
+
 import Button from "@material-ui/core/Button";
 
 import "../../styles.scss";
@@ -69,7 +72,8 @@ class Login extends Component {
 			<div className="login">
 
 				<div>
-					<h1 className="text-center">Log in</h1>
+					<h1 className="text-center"><FontAwesomeIcon icon={faReact} /><br />React RUD</h1>
+					<h3 className="text-center">Log in</h3>
 
 					<div className="panel">
 
