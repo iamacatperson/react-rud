@@ -4,6 +4,7 @@ import app from "../../base";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReact } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faUnlock } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "@material-ui/core/Button";
 
@@ -79,7 +80,7 @@ export default class Register extends Component {
 					<div className="panel">
 						<form onSubmit={this.onSubmit}>
 							<label>
-								Email
+								<FontAwesomeIcon icon={faEnvelope} /> Email
 								<input
 									name="email"
 									type="email"
@@ -90,7 +91,7 @@ export default class Register extends Component {
 								/>
 							</label>
 							<label>
-								Password
+								<FontAwesomeIcon icon={faUnlock} /> Password
 								<input
 									name="password"
 									type="password"
