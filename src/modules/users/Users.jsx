@@ -260,13 +260,11 @@ class Users extends Component {
 					users!
 				</p>
 
-				<p>Please take note that every request to the server will have a delay of <strong>3 seconds</strong>.</p>
-
 				<form className="search" onSubmit={this.searchUsers}>
 					<div className="search__container">
 						<input
 							type="text"
-							placeholder="Search anything!"
+							placeholder="Search anything! (Can press Enter)"
 							name="search"
 							value={search}
 							onChange={this.handleInputChange}
