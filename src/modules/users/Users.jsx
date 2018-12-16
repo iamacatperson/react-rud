@@ -316,8 +316,9 @@ class Users extends Component {
 						</div>
 					</div>
 
-					{isLoading && !users.length &&
-						[...Array(3)].map((row, index) => {
+					{isLoading &&
+						!users.length &&
+						[...Array(4)].map((row, index) => {
 							return (
 								<div className="users__table-row users__table-row--loading" key={index}>
 									<div className="users__table-row" />
