@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookDead, faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
-
-import Button from "@material-ui/core/Button";
 
 import "../../styles.scss";
 
