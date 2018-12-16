@@ -74,11 +74,10 @@ class Login extends Component {
 	}
 
 	render() {
-		const { email, password } = this.state;
+		const { email, password, error } = this.state;
 
 		return (
 			<div className="login">
-
 				<div>
 					<h1 className="text-center">
 						<FontAwesomeIcon icon={faReact} />
@@ -88,6 +87,11 @@ class Login extends Component {
 					<h3 className="text-center">Log in</h3>
 
 					<div className="panel">
+						{error && (
+							<p className="message-panel message-panel--error text-center">
+								{error}
+							</p>
+						)}
 
 						<form onSubmit={this.onSubmit}>
 				
