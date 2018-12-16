@@ -6,6 +6,7 @@
 
 	&__header {
 		padding: 10px 20px;
+		margin-bottom: 30px;
 		background: #363545;
 		display: flex;
 		justify-content: space-between;
@@ -30,6 +31,18 @@
 			width: 50px;
 			height: 50px;
 			border: 2px solid #fff;
+		}
+
+		p {
+			margin: 0;
+		}
+
+		&-cell {
+
+			&--empty {
+				padding: 20px;
+			}
+
 		}
 
 		/* tr */
@@ -94,7 +107,7 @@
 	}
 
 	/* td */
-	&__table > * > * {
+	&__table > * > div {
 		min-width: 70px;
 		padding: 5px;
 		display: table-cell;
@@ -128,7 +141,7 @@
 }
 
 .search {
-	background: #EEE;
+	background: #d0d6d3;
 	padding: 10px 15px;
 
 	input {
