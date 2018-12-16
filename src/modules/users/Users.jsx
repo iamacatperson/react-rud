@@ -250,8 +250,8 @@ class Users extends Component {
 				</div>
 
 				<p>
-					This is a list of dummy users served by json-server. Try to{" "}
-					<strong>Edit</strong> and <strong>Delete</strong> some
+					This is a list of dummy users served by json-server with an initial delay of <strong>5 seconds</strong>. Try to{" "}
+					<strong>Edit</strong>, <strong>Delete</strong>, and <strong>Search</strong> some
 					users!
 				</p>
 
