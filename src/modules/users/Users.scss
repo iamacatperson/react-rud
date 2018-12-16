@@ -14,6 +14,11 @@
 			padding: 0;
 			color: #FFF;
 		}
+
+		&-logout {
+			color: #ff0074;
+			cursor: pointer;
+		}
 	}
 
 	&__table {
@@ -88,6 +93,7 @@
 				letter-spacing: 2px;
 				text-transform: uppercase;
 				color: #fff;
+				cursor: pointer;
 
 				&:hover {
 					background: #6c8494;
