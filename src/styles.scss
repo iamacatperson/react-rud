@@ -59,6 +59,31 @@ a {
 	text-align: center;
 }
 
+.container {
+	
+	&--full-width {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+}
+
+.message-panel {
+	
+	border: 1px solid #ccc;
+	padding: 5px;
+	border-radius: 5px;
+
+	&--error {
+
+		border: 1px solid #bb4055;
+		background: #ffe4e1;
+
+	}
+
+}
+
 .panel {
 	min-width: 300px;
 	width: 300px;
