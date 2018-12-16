@@ -116,7 +116,7 @@ export default class Register extends Component {
 						</form>
 					</div>
 
-					<p className="text-center">Already have an account? <Link to="/login">Log in</Link>.</p>
+					<p className="text-center">Already have an account? <Link to="/">Log in</Link>.</p>
 				</div>
 			</div>
 		);
