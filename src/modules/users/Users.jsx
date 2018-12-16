@@ -51,9 +51,6 @@ class Users extends Component {
 		this.searchUsers = this.searchUsers.bind(this);
 		this.resetSearch = this.resetSearch.bind(this);
 
-		this.deleteUser = this.deleteUser.bind(this);
-		this.editUser = this.editUser.bind(this);
-
 		this.handleInputChange = this.handleInputChange.bind(this);
 
 		this.logOut = this.logOut.bind(this);
