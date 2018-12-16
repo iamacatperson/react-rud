@@ -320,11 +320,17 @@ class Users extends Component {
 						!users.length &&
 						[...Array(4)].map((row, index) => {
 							return (
-								<div className="users__table-row users__table-row--loading" key={index}>
+								<div
+									className="users__table-row users__table-row--loading"
+									key={index}
+								>
 									<div className="users__table-row" />
 									{[...Array(5)].map((row, index) => {
 										return (
-											<div key={index} className="users__table-row">
+											<div
+												key={index}
+												className="users__table-row"
+											>
 												<p />
 											</div>
 										);
@@ -353,7 +359,10 @@ class Users extends Component {
 								>
 									<div>
 										<p>
-											<img src={user.avatar} alt={user.firstName} />
+											<img
+												src={user.avatar}
+												alt={user.firstName}
+											/>
 										</p>
 									</div>
 									<div>
