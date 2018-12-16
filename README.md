@@ -1,44 +1,61 @@
+# React RUD App 
+
+React RUD is a simple read, update, delete (hence RUD) app made using React.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+* Clone the repo in your terminal by clicking the green clone or download button at the top right and copy the URL
 
-### `npm start`
+* In your terminal, type ```git clone URL```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Replace ```URL``` with the url you copied
+hit enter. This will copy all the files from this repo down to your computer.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* In your terminal, cd into the directory you just created
 
-### `npm test`
+ ```cd react-rud
+ ```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Type ```npm install``` to install all dependencies
 
-### `npm run build`
+## Important: Before you start the app
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Provide Firebase credentials
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This application uses [Firebase](https://firebase.google.com/) for a simple registration and login authentication.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To add Firebase credentials needed for this functionality:
 
-### `npm run eject`
+* Add a `.env` file in the root folder of the project (```react-rud/.env```) to set environment variables. Copy in the credentials to this file.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 2. Run a fake API server
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This application uses [json-server](https://github.com/typicode/json-server "JSON Server") as a fake REST API server. Before doing ```npm install```, you must run the fake server first so that the application has some data to render.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To do that, type the following in your terminal
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```json-server --watch db.json --port 3001```
 
-## Learn More
+Since ```json-server``` needs to run concurrently with the app, it's run using port 3001. React's standard port is 3000.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```db.json``` was generated using [faker](https://www.npmjs.com/package/faker).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## You can now start the app
+
+* In your terminal, open a new tab (```cmd + T```).
+* Type ```npm start``` to start the application
+
+The app will run on port 3000.
+
+You will be redirected to a login page. You may use ```admin@gmail.com / 123456``` to login or you may register a new one.
+
+## Functionality overview
+
+* Authenticate admin users via Firebase (login/signup pages + logout button)
+* Displays paginated and sortable lists of users / members
+* Read, update, delete users / members
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
