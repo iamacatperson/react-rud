@@ -7,7 +7,11 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSadCry } from "@fortawesome/free-solid-svg-icons";
+import {
+	faExclamationTriangle,
+	faSort,
+	faUser
+} from "@fortawesome/free-solid-svg-icons";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 
 import "../../styles.scss";
@@ -345,7 +349,7 @@ class Users extends Component {
 
 					{!isLoading && !users.length && (
 						<p className="users__table-cell--empty">
-							<FontAwesomeIcon icon={faSadCry} />{" "}
+							<FontAwesomeIcon icon={faExclamationTriangle} />{" "}
 							{`Sorry, there are no results for "${search}". :( Try another search!`}
 						</p>
 					)}
