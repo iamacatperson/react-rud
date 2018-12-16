@@ -40,6 +40,8 @@ class Users extends Component {
 			isLoading: false,
 
 			activePage: 1,
+			sortOrder: "asc",
+			sortColumn: "firstName",
 
 			avatar: "",
 			firstName: "",
@@ -67,8 +69,16 @@ class Users extends Component {
 	 * @param {string} query		search query string
 	 * @param {number} page 		current page
 	 * @param {boolean} initLoad 	whether the users are fetched upon mounting of component
+	 * @param {string} column 		column / property to be sorted
+	 * @param {string} sortOrder 	sort order (asc | desc)
 	 */
-	getUsers(query = "", currentPage = 1, initLoad) {
+	getUsers(
+		query = "",
+		currentPage = 1,
+		initLoad,
+		column = this.state.sortColumn,
+		sortOrder = this.state.sortOrder
+	) {
 		let delay = null;
 
 		this.setState({ isLoading: true });
@@ -103,6 +113,7 @@ class Users extends Component {
 		const { search } = this.state;
 		e.preventDefault();
 
+		this.setState({ activePage: 1 });
 		this.getUsers(search);
 	}
 
@@ -161,20 +172,20 @@ class Users extends Component {
 	 * @param {string} userId 	userId of item to be deleted
 	 */
 	saveUser(e, userId, userAvatar) {
-		const { activePage, search } = this.state;
+		const { activePage, search, firstName, lastName, email, phone } = this.state;
 		e.preventDefault();
 
 		axios
 			.put(`http://localhost:3001/users/${userId}`, {
 				avatar: userAvatar,
 				firstName:
-					this.state.firstName.charAt(0).toUpperCase() +
-					this.state.firstName.slice(1),
+					firstName.charAt(0).toUpperCase() +
+					firstName.slice(1),
 				lastName:
-					this.state.lastName.charAt(0).toUpperCase() +
-					this.state.lastName.slice(1),
-				email: this.state.email,
-				phone: this.state.phone
+					lastName.charAt(0).toUpperCase() +
+					lastName.slice(1),
+				email: email,
+				phone: phone
 			})
 			.then(res => {
 				this.getUsers(search, activePage);
@@ -201,8 +212,35 @@ class Users extends Component {
 	 * @param {number} pageNumber	 page number to show
 	 */
 	changePage(pageNumber) {
-		this.getUsers(this.state.search, pageNumber);
+		const { search, sortColumn, sortOrder} = this.state;
+
+		this.getUsers(
+			search,
+			pageNumber,
+			undefined,
+			sortColumn,
+			sortOrder
+		);
+
 		this.setState({ activePage: pageNumber });
+	}
+
+	/**
+	 * sorts the table in either ascending or descending order
+	 * @param {string} column	  column to be sorted
+	 */
+	sortTable(column) {
+		let toggledSort = "";
+
+		this.state.sortOrder === "asc" ? (toggledSort = "desc") : (toggledSort = "asc");
+
+		this.setState({ sortOrder: toggledSort, sortColumn: column }, () => {
+
+			const { search, activePage, sortOrder, sortColumn } = this.state;
+			this.getUsers(search, activePage, undefined, sortColumn, sortOrder);
+
+		});
+
 	}
 
 	/**
@@ -211,7 +249,7 @@ class Users extends Component {
 	checkAuthentication() {
 		app.auth().onAuthStateChanged(user => {
 			if (!user) {
-				this.props.history.push("/login");
+				this.props.history.push("/");
 			} else {
 				this.setState({ currentUser: user.email });
 			}
@@ -304,17 +342,25 @@ class Users extends Component {
 				<div className="users__table">
 					<div className="users__table-row users__table-row users__table-row--header">
 						<div />
-						<div>
-							<p>First Name</p>
+						<div onClick={() => this.sortTable("firstName")}>
+							<p>
+								First Name <FontAwesomeIcon icon={faSort} />
+							</p>
 						</div>
-						<div>
-							<p>Last Name</p>
+						<div onClick={() => this.sortTable("lastName")}>
+							<p>
+								Last Name <FontAwesomeIcon icon={faSort} />
+							</p>
 						</div>
-						<div>
-							<p>Email</p>
+						<div onClick={() => this.sortTable("email")}>
+							<p>
+								Email <FontAwesomeIcon icon={faSort} />
+							</p>
 						</div>
-						<div>
-							<p>Phone</p>
+						<div onClick={() => this.sortTable("phone")}>
+							<p>
+								Phone <FontAwesomeIcon icon={faSort} />
+							</p>
 						</div>
 						<div>
 							<p>Actions</p>
