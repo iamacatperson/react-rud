@@ -293,22 +293,20 @@ class Users extends Component {
 			<div className="users">
 				<div className="users__header">
 					<h1>
-						<FontAwesomeIcon icon={faReact} /> React RUD
+						<FontAwesomeIcon icon={faReact} /> React RUD Web App
 					</h1>
 
 					<p>
-						{currentUser &&
-							`Logged in with ${(
-								<strong>currentUser</strong>
-							)}!`}{" "}
-						(<Button onClick={this.logOut}>Logout</Button>)
+						<FontAwesomeIcon icon={faUser} /> {currentUser ? currentUser : "Loading..."}{" "}
+						(<span className="users__header-logout" onClick={this.logOut}>Logout</span>)
 					</p>
 				</div>
 
 				<p>
-					This is a list of dummy users served by json-server with an initial delay of <strong>5 seconds</strong>. Try to{" "}
-					<strong>Edit</strong>, <strong>Delete</strong>, and <strong>Search</strong> some
-					users!
+					This is a list of dummy users served by json-server with an
+					initial delay of <strong>5 seconds</strong>. Try to{" "}
+					<strong>Edit</strong>, <strong>Delete</strong>, and{" "}
+					<strong>Search</strong> some users!
 				</p>
 
 				<form className="search" onSubmit={this.searchUsers}>
