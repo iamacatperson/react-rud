@@ -1,0 +1,17 @@
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+
+	input {
+		width: 100%;
+		box-sizing: border-box;
+		margin-bottom: 20px;
+	}
+
+	button {
+		width: 100%;
+	}
+}

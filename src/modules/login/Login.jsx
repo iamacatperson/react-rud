@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import app from "../../base";
+
+import Button from "@material-ui/core/Button";
+
+import "../../styles.scss";
+import "./Login.scss";
 
 class Login extends Component {
 	constructor(props) {
@@ -60,34 +66,38 @@ class Login extends Component {
 		const { email, password } = this.state;
 
 		return (
-			<div className="users">
-				<h1>Login</h1>
+			<div className="login">
 
-				<p>Please enter your email and password to login.</p>
+				<div>
+					<h1 className="text-center">Log in</h1>
 
-				<form onSubmit={this.onSubmit}>
-					<label>
-						Email
-						<input
-							name="email"
-							type="email"
-							onChange={this.handleInputChange}
-							value={email}
-							placeholder="Email"
-						/>
-					</label>
-					<label>
-						Password
-						<input
-							name="password"
-							type="password"
-							onChange={this.handleInputChange}
-							value={password}
-							placeholder="Password"
-						/>
-					</label>
-					<button type="submit">Log In</button>
-				</form>
+					<div className="panel">
+
+						<form onSubmit={this.onSubmit}>
+				
+							<label for="email">Email</label>
+							<input
+								name="email"
+								type="email"
+								onChange={this.handleInputChange}
+								value={email}
+								placeholder="e.g. john@domain.com"
+							/>
+
+							<label for="password">Password</label>
+							<input
+								name="password"
+								type="password"
+								onChange={this.handleInputChange}
+								value={password}
+							/>
+							<Button variant="contained" color="primary" type="submit">Log In</Button>
+						</form>
+					</div>
+
+					<p className="text-center">Don't have an account? <Link to="/register">Register</Link>.</p>
+				</div>
+
 			</div>
 		);
 	}
