@@ -143,7 +143,6 @@ class Users extends Component {
 	 * @param {object} e		event object
 	 * @param {string} userId 	userId of item to be deleted
 	 */
-	saveUser(e, userId) {
 	saveUser(e, userId, userAvatar) {
 		const { activePage, search } = this.state;
 		e.preventDefault();
