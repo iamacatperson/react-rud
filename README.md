@@ -15,8 +15,7 @@ hit enter. This will copy all the files from this repo down to your computer.
 
 * In your terminal, cd into the directory you just created
 
- ```cd react-rud
- ```
+ ```cd react-rud```
 
 * Type ```npm install``` to install all dependencies
 
@@ -56,6 +55,7 @@ You will be redirected to a login page. You may use ```admin@gmail.com / 123456`
 * Authenticate admin users via Firebase (login/signup pages + logout button)
 * Displays paginated and sortable lists of users / members
 * Read, update, delete users / members
+* Search users
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
