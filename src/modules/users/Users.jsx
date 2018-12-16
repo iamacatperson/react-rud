@@ -264,7 +264,7 @@ class Users extends Component {
 			.signOut()
 			.then(
 				() => {
-					this.props.history.push("/login");
+					this.props.history.push("/");
 				},
 				error => {
 					console.error("Sign Out Error", error);
