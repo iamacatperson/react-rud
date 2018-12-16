@@ -10,8 +10,8 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
+      	<Route exact component={Login} path="/" />
         <Route exact component={Users} path="/users" />
-        <Route exact component={Login} path="/login" />
         <Route exact component={Register} path="/register" />
         <Route exact component={NotFound} path="*" />
       </Switch>
