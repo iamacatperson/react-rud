@@ -454,30 +454,34 @@ class Users extends Component {
 						})}
 				</div>
 
-				{!!users.length && 
+				{!!users.length && (
 					<ul className="pagination">
-						{[...Array(Math.round(totalUsers / 20))].map((_, index) => {
-							return (
-								<li
-									key={index}
-									className="pagination__item"
-									onClick={() => this.changePage(index + 1)}
-								>
-									<Button
-										variant={
-											activePage !== index + 1
-												? "outlined"
-												: "contained"
+						{[...Array(Math.round(totalUsers / 20))].map(
+							(_, index) => {
+								return (
+									<li
+										key={index}
+										className="pagination__item"
+										onClick={() =>
+											this.changePage(index + 1)
 										}
-										color="primary"
 									>
-										{index + 1}
-									</Button>
-								</li>
-							);
-						})}
+										<Button
+											variant={
+												activePage !== index + 1
+													? "outlined"
+													: "contained"
+											}
+											color="primary"
+										>
+											{index + 1}
+										</Button>
+									</li>
+								);
+							}
+						)}
 					</ul>
-				}
+				)}
 			</div>
 		);
 	}
