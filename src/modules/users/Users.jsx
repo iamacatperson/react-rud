@@ -225,7 +225,6 @@ class Users extends Component {
 			isLoading,
 			userId,
 			search,
-			avatar,
 			firstName,
 			lastName,
 			email,
@@ -235,8 +234,6 @@ class Users extends Component {
 		} = this.state;
 
 		const { classes } = this.props;
-
-		console.log(users);
 
 		return (
 			<div className="users">
@@ -251,8 +248,6 @@ class Users extends Component {
 						(<Button onClick={this.logOut}>Logout</Button>)
 					</p>
 				</div>
-
-				<h2>Users</h2>
 
 				<p>
 					This is a list of dummy users served by json-server. Try to{" "}
