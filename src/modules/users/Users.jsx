@@ -327,6 +327,9 @@ class Users extends Component {
 						users.map(user => {
 							return (
 								<form
+									onSubmit={e =>
+										this.saveUser(e, user.id, user.avatar)
+									}
 									key={user.id}
 									className={`users__table-row ${
 										userId === user.id
@@ -348,9 +351,12 @@ class Users extends Component {
 												placeholder="First Name"
 												type="text"
 												value={firstName}
+												pattern="[A-Za-z]{2,50}"
 												onChange={
 													this.handleInputChange
 												}
+												title="First Name should not contain any digit, space, or special character"
+												required
 											/>
 										)}
 									</div>
@@ -363,9 +369,12 @@ class Users extends Component {
 												placeholder="Last Name"
 												type="text"
 												value={lastName}
+												pattern="[A-Za-z]{2,50}"
 												onChange={
 													this.handleInputChange
 												}
+												title="Last Name should not contain any digit, space, or special character"
+												required
 											/>
 										)}
 									</div>
@@ -384,7 +393,7 @@ class Users extends Component {
 											<input
 												name="email"
 												placeholder="Email"
-												type="text"
+												type="email"
 												value={email}
 												onChange={
 													this.handleInputChange
@@ -424,13 +433,7 @@ class Users extends Component {
 												variant="contained"
 												className={classes.button}
 												color="primary"
-												onClick={e =>
-													this.saveUser(
-														e,
-														user.id,
-														user.avatar
-													)
-												}
+												type="submit"
 											>
 												{!isLoading
 													? "Save"
