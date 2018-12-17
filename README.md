@@ -52,10 +52,7 @@ You will be redirected to a login page. You may use ```admin@gmail.com / 123456`
 
 ## Functionality overview
 
-* Authenticate admin users via Firebase (login/signup pages + logout button)
+* Authenticate admin users via Firebase (login / signup pages + logout button)
 * Displays paginated and sortable lists of users / members
 * Read, update, delete users / members
-* Search users
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+* Search users / members
